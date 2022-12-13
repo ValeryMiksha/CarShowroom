@@ -3,16 +3,16 @@ package entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "wishlists")
+@Table(name = "UserWishList")
 public class Wishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "CAR_ID")
+    @Column(name = "idCar")
     private int carId;
 
-    @Column(name = "USER_ID")
+    @Column(name = "idUsers")
     private int userId;
 
     public int getCarId() {

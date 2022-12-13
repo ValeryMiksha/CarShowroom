@@ -8,5 +8,7 @@ public enum Commands {
     UserWishlistSent,
     AllUsersSent,
     StatisticsSent,
-    AllMessagesSent
+    AllMessagesSent,
+    NoUserInDatabase,
+    NoUserWishlist
 }

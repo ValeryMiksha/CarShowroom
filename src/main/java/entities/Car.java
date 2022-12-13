@@ -9,17 +9,17 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "VENDOR")
+    @Column(name = "Company")
     private String vendor;
-    @Column(name = "MODEL")
+    @Column(name = "Model")
     private String model;
-    @Column(name = "YEAR_OF_ISSUE")
+    @Column(name = "YearOfIssue")
     private String yearOfIssue;
-    @Column(name = "COST")
+    @Column(name = "Cost")
     private long price;
-    @Column(name = "VOLUME_OF_ENGINE")
+    @Column(name = "ValumeOfEngine")
     private String engineVolume;
-    @Column(name = "TRANSMISSION")
+    @Column(name = "TypeOfTransmission")
     private String transmission;
 
     public Car() {

@@ -58,16 +58,21 @@ public class ClientHandler {
                                 case CHECK_USER_COMMAND -> {
                                     String loginToCheck = parseMap.get("login").toString();
                                     String passwordToCheck = String.valueOf(Objects.hashCode(parseMap.get("password").toString()));
+                                    boolean flag=false;
                                     for (User temp : service.getAllUsers()) {
                                         if (temp.getLogin().equals(loginToCheck))
                                             if (temp.getPassword().equals(passwordToCheck)) {
                                                 User userToSend = makeUserInfo(loginToCheck, passwordToCheck,
                                                         "", temp.isAdmin(), temp.isLocked());
                                                 Connection.writeObject(userToSend, Commands.LoginAndPasswordApproved);
+                                                flag=true;
                                                 break;
                                             }
                                     }
-                                    break;
+                                    if(!flag) {
+                                        Connection.writeObject(new User(), Commands.NoUserInDatabase);
+                                        break;
+                                    }
                                 }
                                 case SEND_USER_INFO -> {
                                     String loginToFind=parseMap.get("login").toString();
@@ -122,16 +127,20 @@ public class ClientHandler {
                                     int userIdForWishlist=service.getUserByLogin(loginToFind).getId();
 
                                     List<Wishlist>wishlists=service.getAllWishlists().stream().filter(p->p.getUserId()==userIdForWishlist).toList();
-                                    List<Car>cars=new ArrayList<>();
-                                    for(Wishlist temp:wishlists)
-                                    {
-                                        int carId=temp.getCarId();
-                                        Car ccar=service.getCarById(carId);
-                                        cars.add(ccar);
-                                    }
+                                    if(!wishlists.isEmpty()) {
+                                        List<Car> cars = new ArrayList<>();
+                                        for (Wishlist temp : wishlists) {
+                                            int carId = temp.getCarId();
+                                            Car ccar = service.getCarById(carId);
+                                            cars.add(ccar);
+                                        }
 
-                                    Map<String,List<Car>>var=cars.stream().collect(Collectors.groupingBy(Car::getModel));
-                                    Connection.writeObjectCar(var,Commands.UserWishlistSent);
+                                        Map<String, List<Car>> var = cars.stream().collect(Collectors.groupingBy(Car::getModel));
+                                        Connection.writeObjectCar(var, Commands.UserWishlistSent);
+                                    }
+                                    else {
+                                        Connection.writeObjectCar(new HashMap<>(), Commands.NoUserWishlist);
+                                    }
                                 }
                                 case ADD_MESSAGE_TO_ADMIN_COMMAND -> {
                                     String userLogin=parseMap.get("login").toString();

@@ -32,7 +32,7 @@ public class WishlistService implements WishlistDao {
 
         Session session= sessionHandler.getCurrentSession();
 
-        String sqlQuery="SELECT * FROM wishlists";
+        String sqlQuery="SELECT * FROM userwishlist";
         Query query= session.createSQLQuery(sqlQuery).addEntity(Wishlist.class);
         List<Wishlist>returnList=query.list();
 
@@ -47,7 +47,7 @@ public class WishlistService implements WishlistDao {
 
         Session session= sessionHandler.getCurrentSession();
 
-        String sqlQuery="SELECT * FROM wishlists WHERE id=:id";
+        String sqlQuery="SELECT * FROM userwishlist WHERE id=:id";
         Query query= session.createSQLQuery(sqlQuery).addEntity(Wishlist.class);
         query.setParameter("id",id);
 

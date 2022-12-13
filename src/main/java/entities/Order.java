@@ -9,9 +9,9 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "USER_ID")
+    @Column(name = "idUsers")
     private int userId;
-    @Column(name = "CAR_ID")
+    @Column(name = "idCar")
     private int carId;
 
 

@@ -8,18 +8,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name="LOGIN")
+    @Column(name="login")
     private String login;
-    @Column(name="PASSWORD")
+    @Column(name="password")
     private String password;
 
-    @Column(name="EMAIL")
+    @Column(name="mail")
     private String email;
 
-    @Column(name="IS_ADMIN")
+    @Column(name="ISADMIN")
     private boolean isAdmin;
 
-    @Column(name="IS_LOCKED")
+    @Column(name="locked")
     private boolean isLocked;
 
 

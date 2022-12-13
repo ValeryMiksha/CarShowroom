@@ -9,9 +9,9 @@ public class MessageToAdmin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "LOGIN")
+    @Column(name = "login")
     private String userLogin;
-    @Column(name = "MESSAGE")
+    @Column(name = "massag")
     private String content;
 
     public MessageToAdmin() {
